@@ -7,9 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Matrix {
-    public int[][] to2DArray() {
-        return matrix;
-    }
+    public int[][] to2DArray() { return matrix; }
 
     private int[][] matrix;
 
@@ -59,6 +57,39 @@ public class Matrix {
 
     public static int determinate(int c, Matrix a) {
         return 0;
+    }
+
+    public static Boolean isEqual(Matrix a, Matrix b) throws InvalidMatrixOperation {
+        int[][] firstMatrix = a.to2DArray();
+        int[][] secondMatrix = b.to2DArray();
+
+        if (firstMatrix.length != secondMatrix.length) {
+            System.out.println("\t- Rows were not the same");
+            return false;
+        }
+
+        if (firstMatrix.length == 0 && secondMatrix.length == 0) {}
+        else {
+            if (firstMatrix.length > 0 && secondMatrix.length > 0) {
+                for (int row = 0; row < firstMatrix.length; row++) {
+                    if (firstMatrix[row].length != secondMatrix[row].length) {
+                        System.out.println("\t- Columns were not the same");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        for (int row = 0; row < firstMatrix.length; row++) {
+            for (int column = 0; column < firstMatrix[row].length; column++) {
+                if (firstMatrix[row][column] != secondMatrix[row][column]) {
+                    System.out.println("\t- Information in same sized matrices are different");
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 }
