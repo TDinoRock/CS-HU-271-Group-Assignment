@@ -35,8 +35,58 @@ public class Matrix {
         return new Matrix();
     }
 
-    public static Matrix subtract(Matrix a, Matrix b) throws InvalidMatrixOperation {
-        return new Matrix();
+  //returns the number of columns in our 2D array
+    public int numberOfColumns(){
+        return this.matrix[0].length;
+    }
+
+
+    //returns the number of rows in our 2D array
+    public int numberOfRows(){
+        return this.matrix.length;
+    }
+
+    public static int[][] subtract(Matrix a, Matrix b) throws InvalidMatrixOperation {
+
+
+        if (a == null || b == null){
+            throw new NullPointerException("One or both of the matrices are null");
+        }
+        //check each row
+        //need to check if the two matrices are the same size
+        if (a.numberOfColumns() != b.numberOfColumns()) {
+            String errorMessage = "Error: The matrices are different sizes (columns)";
+            throw new InvalidMatrixOperation(errorMessage);
+
+        }
+
+        if (a.numberOfRows() != b.numberOfRows()) {
+            String errorMessage2 = "Error: The matrices are different sizes (rows)";
+            throw new InvalidMatrixOperation(errorMessage2);
+        }
+
+
+        //set variables for rows and cols to make calculations easier
+        int rows = a.numberOfRows();
+        int cols = a.numberOfColumns();
+
+        int result[][] = new int[rows][cols];
+        //Matrix c = new Matrix();
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = a.to2DArray()[i][j] - b.to2DArray()[i][j];
+            }
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+
+        }
+        System.out.println();
+        return result;
     }
 
     public static Matrix subtract(int c, Matrix a) {
