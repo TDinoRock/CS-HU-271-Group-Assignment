@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cs271.MatrixTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-06-24T04:43:47" hostname="Drews-MacBook-Pro.local" time="0.027">
+  <properties/>
+  <testcase name="shouldLoadDataIntoMatrix()" classname="com.cs271.MatrixTests" time="0.018"/>
+  <testcase name="matricesSubtractionFailsWhenMatrixIsNull()" classname="com.cs271.MatrixTests" time="0.003"/>
+  <testcase name="matricesSubtractionWorks()" classname="com.cs271.MatrixTests" time="0.001"/>
+  <testcase name="matricesSubtractionFailsWhenColumnsAreDifferentSizes()" classname="com.cs271.MatrixTests" time="0.001"/>
+  <testcase name="matricesSubtractionFailsWhenRowsAreDifferentSizes()" classname="com.cs271.MatrixTests" time="0.001"/>
+  <system-out><![CDATA[
+Error: One or both matrices are null
+
+0 -1 
+1 1 
+
+1 3 
+2 3 
+
+
+Error: The matrices are different sizes (columns)
+
+Error: The matrices are different sizes (rows)
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

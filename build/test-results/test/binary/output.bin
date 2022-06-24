@@ -1,0 +1,14 @@
+
+%Error: One or both matrices are null
+
+0 -1 
+1 1 
+
+1 3 
+2 3 
+
+
+2Error: The matrices are different sizes (columns)
+
+/Error: The matrices are different sizes (rows)
+
