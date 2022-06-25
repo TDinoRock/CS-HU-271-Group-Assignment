@@ -19,11 +19,36 @@ public class Matrix {
         this.matrix = matrix;
     }
 
-    public String toString() {
-        return "";
+    public static StringBuilder toString(Matrix a) throws NullPointerException {
+        if (a == null) {
+            throw new NullPointerException("Matrix is null");
+        }
+
+        int[][] printedMatrix = a.to2DArray();
+        StringBuilder stringedMatrix = new StringBuilder();
+        for (int[] ints : printedMatrix) {
+            for (int anInt : ints) {
+                stringedMatrix.append(anInt);
+                stringedMatrix.append(" ");
+            }
+            stringedMatrix.append(", ");
+        }
+        stringedMatrix.delete(stringedMatrix.length()-2, stringedMatrix.length());
+
+        return stringedMatrix;
     }
 
     public void print() {
+    }
+
+    //returns the number of columns in our 2D array
+    public int numberOfColumns(){
+        return this.matrix[0].length;
+    }
+
+    //returns the number of rows in our 2D array
+    public int numberOfRows(){
+        return this.matrix.length;
     }
 
 
@@ -32,27 +57,28 @@ public class Matrix {
     }
 
     public static Matrix add(int c, Matrix a) {
-        return new Matrix();
-    }
+        if (a == null){
+            throw new NullPointerException("Matrix is null");
+        }
 
-  //returns the number of columns in our 2D array
-    public int numberOfColumns(){
-        return this.matrix[0].length;
-    }
+        int[][] addingMatrix = a.to2DArray();
 
+        for (int rows = 0; rows < addingMatrix.length; rows++) {
+            for (int columns = 0; columns < addingMatrix[rows].length; columns++) {
+                addingMatrix[rows][columns] = c + addingMatrix[rows][columns];
+            }
+        }
 
-    //returns the number of rows in our 2D array
-    public int numberOfRows(){
-        return this.matrix.length;
+        Matrix finalMatrix = new Matrix();
+        finalMatrix.load(addingMatrix);
+        return finalMatrix;
     }
 
     public static int[][] subtract(Matrix a, Matrix b) throws InvalidMatrixOperation {
-
-
         if (a == null || b == null){
             throw new NullPointerException("One or both of the matrices are null");
         }
-        //check each row
+
         //need to check if the two matrices are the same size
         if (a.numberOfColumns() != b.numberOfColumns()) {
             String errorMessage = "Error: The matrices are different sizes (columns)";
@@ -70,7 +96,7 @@ public class Matrix {
         int rows = a.numberOfRows();
         int cols = a.numberOfColumns();
 
-        int result[][] = new int[rows][cols];
+        int[][] result = new int[rows][cols];
         //Matrix c = new Matrix();
 
         for (int i = 0; i < rows; i++) {
@@ -90,7 +116,21 @@ public class Matrix {
     }
 
     public static Matrix subtract(int c, Matrix a) {
-        return new Matrix();
+        if (a == null){
+            throw new NullPointerException("Matrix is null");
+        }
+
+        int[][] subtractingMatrix = a.to2DArray();
+
+        for (int rows = 0; rows < subtractingMatrix.length; rows++) {
+            for (int columns = 0; columns < subtractingMatrix[rows].length; columns++) {
+                subtractingMatrix[rows][columns] = subtractingMatrix[rows][columns] - c;
+            }
+        }
+
+        Matrix finalMatrix = new Matrix();
+        finalMatrix.load(subtractingMatrix);
+        return finalMatrix;
     }
 
     public static Matrix multiply(Matrix a, Matrix b) throws InvalidMatrixOperation {
@@ -110,12 +150,15 @@ public class Matrix {
     }
 
     public static Boolean isEqual(Matrix a, Matrix b) throws InvalidMatrixOperation {
+        if (a == null || b == null){
+            throw new NullPointerException("One or both of the matrices are null");
+        }
+
         int[][] firstMatrix = a.to2DArray();
         int[][] secondMatrix = b.to2DArray();
 
         if (firstMatrix.length != secondMatrix.length) {
-            System.out.println("\t- Rows were not the same");
-            return false;
+            throw new InvalidMatrixOperation("Error: The matrices are different sizes (rows)");
         }
 
         if (firstMatrix.length == 0 && secondMatrix.length == 0) {}
@@ -123,8 +166,7 @@ public class Matrix {
             if (firstMatrix.length > 0 && secondMatrix.length > 0) {
                 for (int row = 0; row < firstMatrix.length; row++) {
                     if (firstMatrix[row].length != secondMatrix[row].length) {
-                        System.out.println("\t- Columns were not the same");
-                        return false;
+                        throw new InvalidMatrixOperation("Error: The matrices are different sizes (columns)");
                     }
                 }
             }
@@ -133,8 +175,8 @@ public class Matrix {
         for (int row = 0; row < firstMatrix.length; row++) {
             for (int column = 0; column < firstMatrix[row].length; column++) {
                 if (firstMatrix[row][column] != secondMatrix[row][column]) {
-                    System.out.println("\t- Information in same sized matrices are different");
-                    return false;
+                    throw new InvalidMatrixOperation("Error: Matrices contain different values "+
+                                firstMatrix[row][column] + " != " + secondMatrix[row][column]);
                 }
             }
         }
