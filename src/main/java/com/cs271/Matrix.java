@@ -69,6 +69,10 @@ public class Matrix {
 //            System.err.print("Unknown input!");
 //            System.exit(0);
 //        }
+        if (a == null || b == null) {
+            throw new InvalidMatrixOperation("Null matrix");
+        }
+
         Matrix matrix = new Matrix();
         if (a.matrix.length != b.matrix.length || a.matrix[0].length != b.matrix[0].length) {
 //            System.out.println("\t- Matrices cannot be added! ");

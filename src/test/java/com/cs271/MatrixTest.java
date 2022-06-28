@@ -21,19 +21,80 @@ class MatrixTests {
         Assertions.assertArrayEquals(expected2, a.to2DArray());
     }
 
-    public static void additionTests () throws InvalidMatrixOperation {
-        Matrix a = new Matrix();
-        Matrix b = new Matrix();
-        int[][] matrix1 = {{1, 2}, {3, 4}};
-        int[][] matrix2 = {{1, 2}, {3, 4}};
-        int[][] matrix3 = {{1, 3}, {7, 5}};
-        int[][] matrix4 = {{2, 4}, {6, 8}};
-        int[][] matrix5 = {{3, 7}, {4, 1}};
-        int[][] matrix6 = {{9, 3}, {1, 1}};
-        int[][] matrix7 = {{1, 2, 3}, {1, 2, 3}};
-        int[][] matrix8 = {{1, 2, 3}, {1, 2, 3}};
-        int[][] matrix9 = {{1, 2}, {3}};
-        int[][] matrix10 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    @Test
+    void additionTests () throws InvalidMatrixOperation {
+        System.out.println("\n============================================================");
+        System.out.println("Tests for Matrix Addition Method");
+
+        Matrix firstMatrix = new Matrix();
+        int[][] firstMatrix1 = {{1}};
+        int[][] firstMatrix2 = {{1, 1}, {1, 1}};
+        int[][] firstMatrix3 = {{1, 1}};
+        int[][] firstMatrix4 = {{1}, {1}};
+        int[][] firstMatrix5 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+        int[][] firstMatrix6 = {{1, 1}, {1, 1}, {1, 1}};
+        int[][] firstMatrix7 = {{1, 1, 1}, {1, 1, 1}};
+        int[][] firstMatrix8 = {{1}, {1, 1}, {1, 1, 1}};
+
+        Matrix secondMatrix = new Matrix();
+        int[][] secondMatrix1 = {{6}};
+        int[][] secondMatrix2 = {{6, 7}, {8, 9}};
+        int[][] secondMatrix3 = {{6, 7}};
+        int[][] secondMatrix4 = {{6}, {7}};
+        int[][] secondMatrix5 = {{6, 7, 8}, {9, 10, 11}, {12, 13, 14}};
+        int[][] secondMatrix6 = {{6, 7}, {8, 9}, {10, 11}};
+        int[][] secondMatrix7 = {{6, 7, 8}, {9, 10, 11}};
+        int[][] secondMatrix8 = {{6}, {7, 8}, {9, 10, 11}};
+
+        Matrix expectedMatrix = new Matrix();
+        int[][] expectedMatrix1 = {{7}};
+        int[][] expectedMatrix2 = {{7, 8}, {9, 10}};
+        int[][] expectedMatrix3 = {{7, 8}};
+        int[][] expectedMatrix4 = {{7}, {8}};
+        int[][] expectedMatrix5 = {{7, 8, 9}, {10, 11, 12}, {13, 14, 15}};
+        int[][] expectedMatrix6 = {{7, 8}, {9, 10}, {11, 12}};
+        int[][] expectedMatrix7 = {{7, 8, 9}, {10, 11, 12}};
+        int[][] expectedMatrix8 = {{7}, {8, 9}, {10, 11, 12}};
+
+        Matrix finalMatrix;
+
+        /* Matrix Addition Part 1*/
+        firstMatrix.load(firstMatrix1);
+        secondMatrix.load(secondMatrix1);
+        expectedMatrix.load(expectedMatrix1);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(1);
+                System.out.println(" - 1x1 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(1);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 1*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix2);
+        secondMatrix.load(secondMatrix2);
+        expectedMatrix.load(expectedMatrix2);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 2x2 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
 
         /* Same Matrix Addition */
         a.load(matrix1);
@@ -159,7 +220,6 @@ class MatrixTests {
             System.out.println(" - Unsuccessful add! ");
         }
     }
-
 
 
     /* scalarAdditionTests written by Trennon Talbot */
