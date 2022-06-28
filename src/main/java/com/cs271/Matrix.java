@@ -53,7 +53,36 @@ public class Matrix {
 
 
     public static Matrix add(Matrix a, Matrix b) throws InvalidMatrixOperation {
-        return  new Matrix();
+        //        int t;
+//        Scanner s = new Scanner(System.in);
+//        System.out.print("Would you like to add or subtract matrices ?"
+//                + " Please enter either '1' for addition or '2' for subtraction. ");
+//        t = s.nextInt();
+//        if (t == 1) {
+//            System.out.print("Great! You have selected addition --  ");
+//        }
+//        if (t == 2) {
+//            System.err.print("The subtract function is not available!");
+//            System.exit(0);
+//        }
+//        if (t != 1 && t != 2) {
+//            System.err.print("Unknown input!");
+//            System.exit(0);
+//        }
+        Matrix matrix = new Matrix();
+        if (a.matrix.length != b.matrix.length || a.matrix[0].length != b.matrix[0].length) {
+//            System.out.println("\t- Matrices cannot be added! ");
+//            return false;
+            throw new InvalidMatrixOperation("Invalid matrix operation");
+        }
+        int[][] data = new int[a.matrix.length][a.matrix[0].length];
+        for (int i = 0; i < a.matrix.length; i++) {
+            for (int j = 0; j < a.matrix[0].length; j++) {
+                data[i][j] = a.matrix[i][j] + b.matrix[i][j];
+            }
+        }
+        matrix.load(data);
+        return matrix;
     }
 
     public static Matrix add(int c, Matrix a) {
