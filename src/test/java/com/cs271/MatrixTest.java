@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static com.cs271.Matrix.add;
 import static com.cs271.Matrix.subtract;
 import static com.cs271.Matrix.isEqual;
+import static com.cs271.Matrix.multiply;
 
 class MatrixTests {
 
@@ -697,219 +698,385 @@ class MatrixTests {
         System.out.println("============================================================\n");
     }
 
-    /* isEqualsTests written by Trennon Talbot */
+
+
     @Test
-    void isEqualTests () throws InvalidMatrixOperation {
-        System.out.println("\n============================================================");
-        System.out.println("Tests for isEqual Method");
+    void scalarMultiplicationTests () throws NullPointerException {
+        System.out.println("\n===========================================");
+        System.out.println("Tests for Scalar Multiplication Method");
 
-        Matrix a = new Matrix();
-        Matrix b = new Matrix();
-        int[][] matrix1 = {{1, 2}, {3, 4}};
-        int[][] matrix2 = {{1, 2}, {3, 4}};
-        int[][] matrix3 = {{1}};
-        int[][] matrix4 = {{1}, {2}};
-        int[][] matrix5 = {{1, 2}};
-        int[][] matrix6 = {{1}, {2}, {3}};
-        int[][] matrix7 = {{1, 2, 3}};
-        int[][] matrix8 = {{1}, {2, 3}};
-        int[][] matrix9 = {{1, 2}, {3}};
-        int[][] matrix10 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        Matrix testMatrix = new Matrix();
+        int multiply = 2;
 
-        /* Same Matrices */
-        a.load(matrix1);
-        b.load(matrix2);
+        int[][] testMatrix1 = {{1}};
+        int[][] testMatrix2 = {{1, 1}};
+        int[][] testMatrix3 = {{1}, {2}};
+        int[][] testMatrix4 = {{1, 1}, {2, 2}};
+        int[][] testMatrix5 = {{1}, {2, 2}, {3, 3, 3}};
+        int[][] testMatrix6 = {{1, 1}, {2, 2}, {3, 3}};
+        int[][] testMatrix7 = {{1, 1, 1}, {2, 2, 2}};
+        int[][] testMatrix8 = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
+
+        Matrix expectedMatrix = new Matrix();
+        int[][] expectedMatrix1 = {{2}};
+        int[][] expectedMatrix2 = {{2, 2}};
+        int[][] expectedMatrix3 = {{2}, {4}};
+        int[][] expectedMatrix4 = {{2, 2}, {4, 4}};
+        int[][] expectedMatrix5 = {{2}, {4, 4}, {6, 6, 6}};
+        int[][] expectedMatrix6 = {{2, 2}, {4, 4}, {6, 6}};
+        int[][] expectedMatrix7 = {{2, 2, 2}, {4, 4, 4}};
+        int[][] expectedMatrix8 = {{2, 2, 2}, {4, 4, 4}, {6, 6, 6}};
+
+        Matrix finalMult;
+
+        testMatrix.load(testMatrix1);
+        expectedMatrix.load(expectedMatrix1);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
+            if (isEqual(finalMult, expectedMatrix)) {
                 successMessage(1);
-                System.out.println(" - Both 2x2 Matrices");
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation) {
+        } catch (Exception InvalidMatrixOperation) {
             failMessage(1);
-            System.out.println(" - Invalid Matrix");
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 1 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix3);
+        testMatrix.load(testMatrix2);
+        expectedMatrix.load(expectedMatrix2);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(2);
-            System.out.println(" - One 1x1 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 2 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix4);
+        testMatrix.load(testMatrix3);
+        expectedMatrix.load(expectedMatrix3);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(3);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(3);
-            System.out.println(" - One 2x1 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(3);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 3 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix5);
+        testMatrix.load(testMatrix4);
+        expectedMatrix.load(expectedMatrix4);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(4);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(4);
-            System.out.println(" - One 1x2 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(4);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 4 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix6);
+        testMatrix.load(testMatrix5);
+        expectedMatrix.load(expectedMatrix5);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(5);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(5);
-            System.out.println(" - One 3x1 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(5);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 5 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix7);
+        testMatrix.load(testMatrix6);
+        expectedMatrix.load(expectedMatrix6);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(6);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(6);
-            System.out.println(" - One 1x3 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(6);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 6 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix8);
+        testMatrix.load(testMatrix7);
+        expectedMatrix.load(expectedMatrix7);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(7);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(7);
-            System.out.println(" - One 1x1 + 1x2 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(7);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 7 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
 
-        a.load(matrix1);
-        b.load(matrix9);
+        testMatrix.load(testMatrix8);
+        expectedMatrix.load(expectedMatrix8);
+        finalMult = multiply(multiply, testMatrix);
+
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            if (isEqual(finalMult, expectedMatrix)) {
+                successMessage(8);
+                System.out.println(" Multiplication was successful");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(8);
-            System.out.println(" - One 1x2 + 1x1 Matrix and 2x2 Matrix");
+        } catch (Exception InvalidMatrixOperation) {
+            failMessage(8);
+            System.out.println(" Unsuccessful multiplication");
         }
 
-        /* Different Matrices Part 8 */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        testMatrix = nullMatrices(testMatrix);
 
-        a.load(matrix1);
-        b.load(matrix10);
         try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
-            }
-        }
-        catch (Exception InvalidMatrixOperation){
+            multiply(multiply, testMatrix);
+            failMessage(9);
+            System.out.println(" Matrix is invalid");
+        } catch (Exception NullPointerException) {
             successMessage(9);
-            System.out.println(" - One 3x3 Matrix and 2x2 Matrix");
+            System.out.println(" Matrix is null");
         }
+        System.out.println("===========================================\n");
+    }
 
-        /* Empty Matrix */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
+        /* isEqualsTests written by Trennon Talbot */
+        @Test
+        void isEqualTests () throws InvalidMatrixOperation {
+            System.out.println("\n============================================================");
+            System.out.println("Tests for isEqual Method");
 
-        a.load(matrix1);
-        try {
-            if (isEqual(a, b)) {
+            Matrix a = new Matrix();
+            Matrix b = new Matrix();
+            int[][] matrix1 = {{1, 2}, {3, 4}};
+            int[][] matrix2 = {{1, 2}, {3, 4}};
+            int[][] matrix3 = {{1}};
+            int[][] matrix4 = {{1}, {2}};
+            int[][] matrix5 = {{1, 2}};
+            int[][] matrix6 = {{1}, {2}, {3}};
+            int[][] matrix7 = {{1, 2, 3}};
+            int[][] matrix8 = {{1}, {2, 3}};
+            int[][] matrix9 = {{1, 2}, {3}};
+            int[][] matrix10 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+            /* Same Matrices */
+            a.load(matrix1);
+            b.load(matrix2);
+            try {
+                if (isEqual(a, b)) {
+                    successMessage(1);
+                    System.out.println(" - Both 2x2 Matrices");
+                }
+            } catch (Exception InvalidMatrixOperation) {
                 failMessage(1);
-                System.out.println(" - Something went wrong");
+                System.out.println(" - Invalid Matrix");
             }
-        }
-        catch (Exception InvalidMatrixOperation){
-            successMessage(10);
-            System.out.println(" - One empty Matrix and 2x2 Matrix");
-        }
 
-        /* Empty Matrices */
-        a = nullMatrices(a);
-        b = nullMatrices(b);
-        try {
-            if (isEqual(a, b)) {
-                failMessage(1);
-                System.out.println(" - Something went wrong");
+            /* Different Matrices Part 1 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix3);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(2);
+                System.out.println(" - One 1x1 Matrix and 2x2 Matrix");
             }
+
+            /* Different Matrices Part 2 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix4);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(3);
+                System.out.println(" - One 2x1 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 3 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix5);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(4);
+                System.out.println(" - One 1x2 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 4 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix6);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(5);
+                System.out.println(" - One 3x1 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 5 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix7);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(6);
+                System.out.println(" - One 1x3 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 6 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix8);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(7);
+                System.out.println(" - One 1x1 + 1x2 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 7 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix9);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(8);
+                System.out.println(" - One 1x2 + 1x1 Matrix and 2x2 Matrix");
+            }
+
+            /* Different Matrices Part 8 */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            b.load(matrix10);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(9);
+                System.out.println(" - One 3x3 Matrix and 2x2 Matrix");
+            }
+
+            /* Empty Matrix */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+
+            a.load(matrix1);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception InvalidMatrixOperation) {
+                successMessage(10);
+                System.out.println(" - One empty Matrix and 2x2 Matrix");
+            }
+
+            /* Empty Matrices */
+            a = nullMatrices(a);
+            b = nullMatrices(b);
+            try {
+                if (isEqual(a, b)) {
+                    failMessage(1);
+                    System.out.println(" - Something went wrong");
+                }
+            } catch (Exception NullPointerException) {
+                successMessage(11);
+                System.out.println(" - Both empty Matrices");
+            }
+
+            System.out.println("============================================================");
+            System.out.println("\nDONE WITH TESTS");
         }
-        catch (Exception NullPointerException){
-            successMessage(11);
-            System.out.println(" - Both empty Matrices");
+
+
+        /* === HELPER METHODS === */
+        public static Matrix nullMatrices (Matrix a){
+            return new Matrix();
+        }
+        public static void successMessage ( int testNumber){
+            System.out.print("Test " + testNumber + ": Success");
+        }
+        public static void failMessage ( int testNumber){
+            System.out.print("Test " + testNumber + ": Failed");
         }
 
-        System.out.println("============================================================");
-        System.out.println("\nDONE WITH TESTS");
     }
-
-
-    /* === HELPER METHODS === */
-    public static Matrix nullMatrices (Matrix a) {
-        return new Matrix();
-    }
-    public static void successMessage(int testNumber) {
-        System.out.print("Test " + testNumber + ": Success");
-    }
-    public static void failMessage(int testNumber) {
-        System.out.print("Test " + testNumber + ": Failed");
-    }
-
-}
