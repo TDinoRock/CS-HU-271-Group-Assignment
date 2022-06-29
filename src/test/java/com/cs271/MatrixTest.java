@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 package com.cs271;
 
 import org.junit.jupiter.api.Assertions;
@@ -21,145 +28,227 @@ class MatrixTests {
         Assertions.assertArrayEquals(expected2, a.to2DArray());
     }
 
-    public static void additionTests () throws InvalidMatrixOperation {
-        Matrix a = new Matrix();
-        Matrix b = new Matrix();
-        int[][] matrix1 = {{1, 2}, {3, 4}};
-        int[][] matrix2 = {{1, 2}, {3, 4}};
-        int[][] matrix3 = {{1, 3}, {7, 5}};
-        int[][] matrix4 = {{2, 4}, {6, 8}};
-        int[][] matrix5 = {{3, 7}, {4, 1}};
-        int[][] matrix6 = {{9, 3}, {1, 1}};
-        int[][] matrix7 = {{1, 2, 3}, {1, 2, 3}};
-        int[][] matrix8 = {{1, 2, 3}, {1, 2, 3}};
-        int[][] matrix9 = {{1, 2}, {3}};
-        int[][] matrix10 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    @Test
+    void additionTests () throws InvalidMatrixOperation {
+        System.out.println("\n============================================================");
+        System.out.println("Tests for Matrix Addition Method");
+
+        Matrix firstMatrix = new Matrix();
+        int[][] firstMatrix1 = {{1}};
+        int[][] firstMatrix2 = {{1, 1}, {1, 1}};
+        int[][] firstMatrix3 = {{1, 1}};
+        int[][] firstMatrix4 = {{1}, {1}};
+        int[][] firstMatrix5 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+        int[][] firstMatrix6 = {{1, 1}, {1, 1}, {1, 1}};
+        int[][] firstMatrix7 = {{1, 1, 1}, {1, 1, 1}};
+        int[][] firstMatrix8 = {{1}, {1, 1}, {1, 1, 1}};
+
+        Matrix secondMatrix = new Matrix();
+        int[][] secondMatrix1 = {{6}};
+        int[][] secondMatrix2 = {{6, 7}, {8, 9}};
+        int[][] secondMatrix3 = {{6, 7}};
+        int[][] secondMatrix4 = {{6}, {7}};
+        int[][] secondMatrix5 = {{6, 7, 8}, {9, 10, 11}, {12, 13, 14}};
+        int[][] secondMatrix6 = {{6, 7}, {8, 9}, {10, 11}};
+        int[][] secondMatrix7 = {{6, 7, 8}, {9, 10, 11}};
+        int[][] secondMatrix8 = {{6}, {7, 8}, {9, 10, 11}};
+
+        Matrix expectedMatrix = new Matrix();
+        int[][] expectedMatrix1 = {{7}};
+        int[][] expectedMatrix2 = {{7, 8}, {9, 10}};
+        int[][] expectedMatrix3 = {{7, 8}};
+        int[][] expectedMatrix4 = {{7}, {8}};
+        int[][] expectedMatrix5 = {{7, 8, 9}, {10, 11, 12}, {13, 14, 15}};
+        int[][] expectedMatrix6 = {{7, 8}, {9, 10}, {11, 12}};
+        int[][] expectedMatrix7 = {{7, 8, 9}, {10, 11, 12}};
+        int[][] expectedMatrix8 = {{7}, {8, 9}, {10, 11, 12}};
+
+        Matrix finalMatrix;
 
         /* Same Matrix Addition */
-        a.load(matrix1);
-        b.load(matrix2);
-        if (add(a, b)) {
-            successMessage(1);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(1);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        /* Differing number Matrix Addition */
-        a.load(matrix2);
-        b.load(matrix3);
-        if (add(a, b)) {
-            successMessage(2);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(2);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix3);
-        b.load(matrix4);
-        if (add(a, b)) {
-            successMessage(3);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(3);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix4);
-        b.load(matrix5);
-        if (add(a, b)) {
-            successMessage(4);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(4);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix5);
-        b.load(matrix6);
-        if (add(a, b)) {
-            successMessage(5);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(5);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix6);
-        b.load(matrix1);
-        if (add(a, b)) {
-            successMessage(6);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(6);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix5);
-        b.load(matrix2);
-        if (add(a, b)) {
-            successMessage(7);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(7);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix1);
-        b.load(matrix5);
-        if (add(a, b)) {
-            successMessage(8);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(8);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        /* Different Size Matrices */
-        a.load(matrix7);
-        b.load(matrix9);
-        if (add(a, b)) {
-            successMessage(9);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(9);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix1);
-        b.load(matrix8);
-        if (add(a, b)) {
-            successMessage(10);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(10);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix2);
-        b.load(matrix7);
-        if (add(a, b)) {
-            successMessage(11);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(11);
-            System.out.println(" - Unsuccessful add! ");
-        }
-        a.load(matrix3);
-        b.load(matrix10);
-        if (add(a, b)) {
-            successMessage(12);
-            System.out.println(" - Successfully added! ");
-        }
-        else {
-            failMessage(12);
-            System.out.println(" - Unsuccessful add! ");
-        }
-    }
+        /* Matrix Addition Part 1*/
+        firstMatrix.load(firstMatrix1);
+        secondMatrix.load(secondMatrix1);
+        expectedMatrix.load(expectedMatrix1);
+        finalMatrix = add(firstMatrix, secondMatrix);
 
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(1);
+                System.out.println(" - 1x1 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(1);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 2*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix2);
+        secondMatrix.load(secondMatrix2);
+        expectedMatrix.load(expectedMatrix2);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 2x2 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 3*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix3);
+        secondMatrix.load(secondMatrix3);
+        expectedMatrix.load(expectedMatrix3);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 2x1 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 4*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix4);
+        secondMatrix.load(secondMatrix4);
+        expectedMatrix.load(expectedMatrix4);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 1x1 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 5*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix5);
+        secondMatrix.load(secondMatrix5);
+        expectedMatrix.load(expectedMatrix5);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 3x3 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 6*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix6);
+        secondMatrix.load(secondMatrix6);
+        expectedMatrix.load(expectedMatrix6);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 2x3 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Matrix Addition Part 7*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix7);
+        secondMatrix.load(secondMatrix7);
+        expectedMatrix.load(expectedMatrix7);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 3x2 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+        /* Invalid Matrix Addition */
+        /* Matrix Addition Part 8*/
+        firstMatrix = nullMatrices(firstMatrix);
+        secondMatrix = nullMatrices(secondMatrix);
+        expectedMatrix = nullMatrices(expectedMatrix);
+
+        firstMatrix.load(firstMatrix8);
+        secondMatrix.load(secondMatrix8);
+        expectedMatrix.load(expectedMatrix8);
+        finalMatrix = add(firstMatrix, secondMatrix);
+
+        try {
+            if (isEqual(finalMatrix, expectedMatrix)) {
+                successMessage(2);
+                System.out.println(" - 1x2x3 Matrix: " + Matrix.toString(finalMatrix));
+            }
+        }
+        catch (Exception InvalidMatrixOperation) {
+            failMessage(2);
+            System.out.println(" - Invalid Matrix");
+        }
+
+        /* Null Matrix Addition */
+        /* Matrix Addition Part 9*/
+//        firstMatrix = nullMatrices(firstMatrix);
+//        secondMatrix = nullMatrices(secondMatrix);
+//        expectedMatrix = nullMatrices(expectedMatrix);
+//
+//        finalMatrix = add(firstMatrix, secondMatrix);
+//
+//        try {
+//            if (isEqual(finalMatrix, expectedMatrix)) {
+//                successMessage(2);
+//                System.out.println(" - Null Matrix: " + Matrix.toString(finalMatrix));
+//            }
+//        }
+//        catch (Exception NullPointerException) {
+//            failMessage(2);
+//            System.out.println(" - Null Matrix");
+//        }
+    }
 
 
     /* scalarAdditionTests written by Trennon Talbot */
@@ -379,19 +468,19 @@ class MatrixTests {
         Matrix c = new Matrix();
 
         int[][] expected = {{1, 2},
-                             {3, 4}};
+                {3, 4}};
         a.load(expected);
 
         int[][] expected2 = {{1, 3},
-                            {2, 3}};
+                {2, 3}};
         b.load(expected2);
 
         int[][] expected3 = {{0, -1},
-                            {1, 1}};
+                {1, 1}};
         c.load(expected3);
 
         int[][] expected4 = {{1, 3},
-                            {2, 3}};
+                {2, 3}};
 
         Assertions.assertArrayEquals(expected3, Matrix.subtract(a, b));
         Assertions.assertArrayEquals(expected4, Matrix.subtract(a, c));
@@ -404,11 +493,11 @@ class MatrixTests {
         Matrix b = new Matrix();
 
         int[][] expected = {{1, 2},
-                            {3, 4}};
+                {3, 4}};
         a.load(expected);
 
         int[][] expected4 = {{3},
-                            {2, 3}};
+                {2, 3}};
         b.load(expected4);
 
         String expected9 = "Error: The matrices are different sizes (columns)";
