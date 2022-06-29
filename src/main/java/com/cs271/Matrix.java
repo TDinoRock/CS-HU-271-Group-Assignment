@@ -171,7 +171,19 @@ public class Matrix {
     }
 
     public static Matrix multiply(int c, Matrix a) {
-        return new Matrix();
+        if (a == null) {
+            throw new NullPointerException("The matrix is null");
+        }
+
+        Matrix scalarMultiply = new Matrix();
+        int[][] smMatrix = a.to2DArray();
+        for (int rows = 0; rows < smMatrix.length; rows++) {
+            for (int cols = 0; cols < smMatrix[rows].length; cols++) {
+                smMatrix[rows][cols] = c * smMatrix[rows][cols];
+            }
+        }
+        scalarMultiply.load(smMatrix);
+        return scalarMultiply;
     }
 
     public static Matrix transposition(Matrix a) {
