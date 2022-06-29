@@ -110,12 +110,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(3);
                 System.out.println(" - 2x1 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(3);
             System.out.println(" - Invalid Matrix");
         }
 
@@ -131,12 +131,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(4);
                 System.out.println(" - 1x1 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(4);
             System.out.println(" - Invalid Matrix");
         }
 
@@ -152,12 +152,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(5);
                 System.out.println(" - 3x3 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(5);
             System.out.println(" - Invalid Matrix");
         }
 
@@ -173,12 +173,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(6);
                 System.out.println(" - 2x3 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(6);
             System.out.println(" - Invalid Matrix");
         }
 
@@ -194,12 +194,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(7);
                 System.out.println(" - 3x2 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(7);
             System.out.println(" - Invalid Matrix");
         }
         /* Invalid Matrix Addition */
@@ -215,12 +215,12 @@ class MatrixTests {
 
         try {
             if (isEqual(finalMatrix, expectedMatrix)) {
-                successMessage(2);
+                successMessage(8);
                 System.out.println(" - 1x2x3 Matrix: " + Matrix.toString(finalMatrix));
             }
         }
         catch (Exception InvalidMatrixOperation) {
-            failMessage(2);
+            failMessage(8);
             System.out.println(" - Invalid Matrix");
         }
 
